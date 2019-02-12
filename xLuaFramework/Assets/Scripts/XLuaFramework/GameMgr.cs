@@ -1,6 +1,6 @@
 ﻿/*************************************
 			
-		Demo 
+		GameManager 
 		
    @desction:
    @author:felixwee
@@ -11,14 +11,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XLua;
 
-public class Demo : MonoBehaviour {
+public class GameMgr : MonoBehaviour {
 
-    LuaEnv lua = new LuaEnv();
+    void Awake()
+    {
+        gameObject.AddComponent<LuaMgr>();
+
+    }
 	// Use this for initialization
 	void Start () {
-        lua.DoString("print(\"hello\")");
+        LuaMgr.Instance.DoString("require 'xLogic/Main'");
 	}
 	
 	// Update is called once per frame
