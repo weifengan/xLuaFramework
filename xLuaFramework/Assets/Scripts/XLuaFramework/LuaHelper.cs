@@ -17,8 +17,14 @@ using XLua;
 public class LuaHelper : MonoSingleton<LuaHelper> {
 
       
-    public void LoadUIView(string path)
+    public void LoadUIView(string path, XLuaCustomExport.OnCreate OnCreate=null)
     {
         Transform newui = Instantiate<Transform>(Resources.Load<Transform>("UI/"+ path));
+
+        if (OnCreate != null)
+        {
+            newui.gameObject.AddComponent<LuaViewBehaviour>();
+            OnCreate(newui.gameObject);
+        }
     }
 }

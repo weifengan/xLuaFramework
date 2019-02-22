@@ -14,14 +14,17 @@ end
 function UIRootCtrl.Awake()
   print("主界面启动了");
   --这里就是负责把UI克隆出来
-   CS.LuaHelper.Instance:LoadUIView("UIRootView");
+  CS.LuaHelper.Instance:LoadUIView("UIRootView",this.OnCreate);
+
 end
 
 --启动事件
-function UIRootCtrl.OnCreate()
-  print("进入回调OnCreate");
+function UIRootCtrl.OnCreate(obj)
+  print("UI克隆OK,进入回调OnCreate");
+  local btn=UIRootView.btnOpen;
+  btn.onClick:AddListener(this.OpenMessageClick);
 
-  btnOpen=UIRootView.btnOpenMessage:GetComponent('UnityEngine.UI.Button');
+  --btnOpen=UIRootView.btnOpenMessage:GetComponent('UnityEngine.UI.Button');
   --btnOpen.onClick:AddListener(this.OpenMessageClick);
 end
 
